@@ -49,6 +49,7 @@ async function startEc2Instance(label, githubRegistrationToken) {
     params.InstanceMarketOptions = {
       MarketType: 'spot'
     };
+    core.info(`Using spot instances!`);
   }
 
   try {
