@@ -44,6 +44,12 @@ async function startEc2Instance(label, githubRegistrationToken) {
     IamInstanceProfile: { Name: config.input.iamRoleName },
     TagSpecifications: config.tagSpecifications,
   };
+  
+  if (config.input.useSpotInstances) {
+    params.InstanceMarketOptions = {
+      MarketType: 'spot'
+    };
+  }
 
   try {
     const result = await ec2.runInstances(params).promise();
